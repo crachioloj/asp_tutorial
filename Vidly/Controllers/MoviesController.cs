@@ -5,20 +5,49 @@ using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
+using System.Data.Entity;
 
 namespace Vidly.Controllers
 {
   public class MoviesController : Controller
   {
-    private readonly List<Movie> _movies = new List<Movie>()
-      {
-        new Movie { Id = 0, Name = "Shrek"},
-        new Movie { Id = 1, Name = "Wall-E"}
-      };
+    private readonly ApplicationDataModel _dataModel;
+
+    public MoviesController()
+    {
+      _dataModel = new ApplicationDataModel();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+      _dataModel.Dispose();
+      base.Dispose(disposing);
+    }
 
     public ActionResult Index()
     {
-      return View(_movies);
+      var movies = _dataModel.Movies
+        .Include(m => m.Genre);
+
+      return View(movies);
+    }
+
+
+
+    [Route("movies/details/{id}")]
+    public ActionResult Details(int id)
+    {
+      var movie = _dataModel.Movies
+        .Include(m => m.Genre)
+        .Where(m => m.Id == id)
+        .FirstOrDefault();
+
+      if (movie != null)
+      {
+        return View(movie);
+      }
+
+      return HttpNotFound();
     }
 
     // GET: Movies/Random

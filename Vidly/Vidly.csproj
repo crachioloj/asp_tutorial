@@ -147,6 +147,50 @@
     <Compile Include="Migrations\202107260313120_AddAnnotations.Designer.cs">
       <DependentUpon>202107260313120_AddAnnotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107270025320_AddMembershipTypeDescription.cs" />
+    <Compile Include="Migrations\202107270025320_AddMembershipTypeDescription.Designer.cs">
+      <DependentUpon>202107270025320_AddMembershipTypeDescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107270031479_AddMembershipTypeDescription2.cs" />
+    <Compile Include="Migrations\202107270031479_AddMembershipTypeDescription2.Designer.cs">
+      <DependentUpon>202107270031479_AddMembershipTypeDescription2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107270032242_AddMembershipTypeValues.cs" />
+    <Compile Include="Migrations\202107270032242_AddMembershipTypeValues.Designer.cs">
+      <DependentUpon>202107270032242_AddMembershipTypeValues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107270039352_FixTypo.cs" />
+    <Compile Include="Migrations\202107270039352_FixTypo.Designer.cs">
+      <DependentUpon>202107270039352_FixTypo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107270048165_AddDateOfBirth.cs" />
+    <Compile Include="Migrations\202107270048165_AddDateOfBirth.Designer.cs">
+      <DependentUpon>202107270048165_AddDateOfBirth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107270048375_PopulateDateOfBirth.cs" />
+    <Compile Include="Migrations\202107270048375_PopulateDateOfBirth.Designer.cs">
+      <DependentUpon>202107270048375_PopulateDateOfBirth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107270056314_AddGenreTable.cs" />
+    <Compile Include="Migrations\202107270056314_AddGenreTable.Designer.cs">
+      <DependentUpon>202107270056314_AddGenreTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107270058112_AddMovieProperties.cs" />
+    <Compile Include="Migrations\202107270058112_AddMovieProperties.Designer.cs">
+      <DependentUpon>202107270058112_AddMovieProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107270102147_PopulateGenre.cs" />
+    <Compile Include="Migrations\202107270102147_PopulateGenre.Designer.cs">
+      <DependentUpon>202107270102147_PopulateGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107270105392_LinkMovieToGenre.cs" />
+    <Compile Include="Migrations\202107270105392_LinkMovieToGenre.Designer.cs">
+      <DependentUpon>202107270105392_LinkMovieToGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107270108088_MakeGenreRequired.cs" />
+    <Compile Include="Migrations\202107270108088_MakeGenreRequired.Designer.cs">
+      <DependentUpon>202107270108088_MakeGenreRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDataModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -159,6 +203,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -207,6 +252,7 @@
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -236,6 +282,39 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107260313120_AddAnnotations.resx">
       <DependentUpon>202107260313120_AddAnnotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107270025320_AddMembershipTypeDescription.resx">
+      <DependentUpon>202107270025320_AddMembershipTypeDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107270031479_AddMembershipTypeDescription2.resx">
+      <DependentUpon>202107270031479_AddMembershipTypeDescription2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107270032242_AddMembershipTypeValues.resx">
+      <DependentUpon>202107270032242_AddMembershipTypeValues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107270039352_FixTypo.resx">
+      <DependentUpon>202107270039352_FixTypo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107270048165_AddDateOfBirth.resx">
+      <DependentUpon>202107270048165_AddDateOfBirth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107270048375_PopulateDateOfBirth.resx">
+      <DependentUpon>202107270048375_PopulateDateOfBirth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107270056314_AddGenreTable.resx">
+      <DependentUpon>202107270056314_AddGenreTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107270058112_AddMovieProperties.resx">
+      <DependentUpon>202107270058112_AddMovieProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107270102147_PopulateGenre.resx">
+      <DependentUpon>202107270102147_PopulateGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107270105392_LinkMovieToGenre.resx">
+      <DependentUpon>202107270105392_LinkMovieToGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107270108088_MakeGenreRequired.resx">
+      <DependentUpon>202107270108088_MakeGenreRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
