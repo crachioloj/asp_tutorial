@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 
 namespace Vidly.Controllers
 {
@@ -76,7 +77,14 @@ namespace Vidly.Controllers
         dbCustomer.Name = customer.Name;
       }
 
-      _dbContext.SaveChanges();
+      try
+      {
+        _dbContext.SaveChanges();
+      }
+      catch (DbEntityValidationException e)
+      {
+        Console.WriteLine(e);
+      }
 
       return RedirectToAction("Index", "Customers");
     }

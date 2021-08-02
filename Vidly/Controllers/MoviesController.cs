@@ -6,38 +6,37 @@ using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 
 namespace Vidly.Controllers
 {
   public class MoviesController : Controller
   {
-    private readonly ApplicationDataModel _dataModel;
+    private readonly ApplicationDataModel _dbContext;
 
     public MoviesController()
     {
-      _dataModel = new ApplicationDataModel();
+      _dbContext = new ApplicationDataModel();
     }
 
     protected override void Dispose(bool disposing)
     {
-      _dataModel.Dispose();
+      _dbContext.Dispose();
       base.Dispose(disposing);
     }
 
     public ActionResult Index()
     {
-      var movies = _dataModel.Movies
+      var movies = _dbContext.Movies
         .Include(m => m.Genre);
 
       return View(movies);
     }
 
-
-
     [Route("movies/details/{id}")]
     public ActionResult Details(int id)
     {
-      var movie = _dataModel.Movies
+      var movie = _dbContext.Movies
         .Include(m => m.Genre)
         .Where(m => m.Id == id)
         .FirstOrDefault();
@@ -50,52 +49,71 @@ namespace Vidly.Controllers
       return HttpNotFound();
     }
 
-    // GET: Movies/Random
-    public ActionResult Random()
-    {
-      var movie = new Movie() { Name = "Shrek" };
-      var customers = new List<Customer>
-      {
-        new Customer { Id = 0, Name = "Customer 0"},
-        new Customer { Id = 1, Name = "Customer 1"}
-      };
-
-      var viewModel = new RandomMovieViewModel
-      {
-        Movie = movie,
-        Customers = customers
-      };
-
-      return View(viewModel);
-    }
-
-    public ActionResult Edit(int id)
-    {
-      return Content("id=" + id);
-    }
-
-    // Movies
-    /*
-    public ActionResult Index(int? pageIndex, string sortBy)
-    {
-      if (!pageIndex.HasValue)
-      {
-        pageIndex = 1;
-      }
-
-      if (string.IsNullOrWhiteSpace(sortBy))
-      {
-        sortBy = "Name";
-      }
-
-      return Content($"pageIndex={pageIndex}&sortyBy={sortBy}");
-    }
-    */
-
     [Route("movies/released/{year}/{month:regex(\\d{4}):range(1,12)}")]
     public ActionResult ByReleaseYear(int year, int month)
     {
       return Content(year + "/" + month);
+    }
+
+    public ActionResult New()
+    {
+      var viewModel = new MovieFormViewModel
+      {
+        Genres = _dbContext.Genres.AsEnumerable()
+      };
+
+      return View("MovieForm", viewModel);
+    }
+
+    public ActionResult Edit(int id)
+    {
+      var dbMovie = _dbContext.Movies.SingleOrDefault(m => m.Id == id);
+
+      if (dbMovie == null)
+      {
+        return HttpNotFound();
+      }
+
+      var viewModel = new MovieFormViewModel
+      {
+        Movie = dbMovie,
+        Genres = _dbContext.Genres.AsEnumerable()
+      };
+
+      return View("MovieForm", viewModel);
+    }
+
+    [HttpPost]
+    public ActionResult Save(Movie movie)
+    {
+      if (movie.Id == 0)
+      {
+        movie.DateAdded = DateTime.Now;
+        _dbContext.Movies.Add(movie);
+      }
+      else
+      {
+        var dbMovie = _dbContext.Movies.SingleOrDefault(m => m.Id == movie.Id);
+        if (dbMovie == null)
+        {
+          return HttpNotFound();
+        }
+        dbMovie.GenreId = movie.GenreId;
+        dbMovie.Name = movie.Name;
+        dbMovie.NumberInStock = movie.NumberInStock;
+        dbMovie.ReleaseDate = movie.ReleaseDate;
+      }
+
+      try
+      {
+        _dbContext.SaveChanges();
+      }
+      catch (DbEntityValidationException e)
+      {
+        Console.WriteLine(e);
+      }
+
+      return RedirectToAction("Index", "Movies");
     }
   }
 }
