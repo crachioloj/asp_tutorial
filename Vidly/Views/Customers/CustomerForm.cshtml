@@ -30,10 +30,13 @@
         </label>
     </div>
     @Html.HiddenFor(m => m.Customer.Id)
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">SAVE</button>
 }
 
-@section scripts
+@*Enables client-side auth*@
+
+@*@section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@
