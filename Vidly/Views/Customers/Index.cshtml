@@ -43,7 +43,7 @@
 {
     <script>
         $(document).ready(function () {
-            $("#customers").DataTable({
+            let table = $("#customers").DataTable({
                 ajax: {
                     url: "/api/customers",
                     dataSrc: "",
@@ -56,7 +56,7 @@
                         },
                     },
                     {
-                        data: "name"
+                        data: "membershipType.name"
                     },
                     {
                         data: "id",
@@ -69,13 +69,14 @@
 
             $("#customers").on("click", ".js-delete", function () {
                 const button = $(this);
+
                 bootbox.confirm("Are you sure you want to delete this customer?", function (result) {
                     if (result) {
                         $.ajax({
                             url: "/api/customers/" + button.attr("data-customer-id"),
                             method: "DELETE",
                             success: function () {
-                                button.parents("tr").remove();
+                                table.row(button.parents("tr")).remove().draw();
                             },
                         });
                     }
