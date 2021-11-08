@@ -12,11 +12,11 @@ namespace Vidly.Controllers.Api
 {
   public class CustomersController : ApiController
   {
-    private ApplicationDataModel _dbContext;
+    private ApplicationDbContext  _dbContext;
 
     public CustomersController()
     {
-      _dbContext = new ApplicationDataModel();
+      _dbContext = new ApplicationDbContext ();
     }
 
     public IHttpActionResult GetCustomers()

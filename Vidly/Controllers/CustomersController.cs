@@ -12,11 +12,11 @@ namespace Vidly.Controllers
 {
   public class CustomersController : Controller
   {
-    private readonly ApplicationDataModel _dbContext;
+    private readonly ApplicationDbContext  _dbContext;
 
     public CustomersController()
     {
-      _dbContext = new ApplicationDataModel();
+      _dbContext = new ApplicationDbContext ();
     }
 
     protected override void Dispose(bool disposing)
