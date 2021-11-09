@@ -250,6 +250,10 @@
     <Compile Include="Migrations\202111081305197_identy-updates.Designer.cs">
       <DependentUpon>202111081305197_identy-updates.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111091345435_SeedUsers.cs" />
+    <Compile Include="Migrations\202111091345435_SeedUsers.Designer.cs">
+      <DependentUpon>202111091345435_SeedUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -587,6 +591,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111081305197_identy-updates.resx">
       <DependentUpon>202111081305197_identy-updates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111091345435_SeedUsers.resx">
+      <DependentUpon>202111091345435_SeedUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
