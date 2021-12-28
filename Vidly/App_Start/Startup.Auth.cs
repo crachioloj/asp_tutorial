@@ -57,6 +57,8 @@ namespace Vidly
       //   appId: "",
       //   appSecret: "");
 
+      // TODO: Try and set up Google OAuth
+
       //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
       //{
       //    ClientId = "",
