@@ -25,12 +25,25 @@ namespace Vidly.Controllers
       base.Dispose(disposing);
     }
 
-    public ActionResult Index()
+    public ViewResult Index()
     {
-      var movies = _dbContext.Movies
-        .Include(m => m.Genre);
+      if (User.IsInRole(RoleName.CanManageMovies))
+      {
+        return View("List");
+      }
 
-      return View(movies);
+      return View("ReadOnlyList");
+    }
+
+    [Authorize(Roles = RoleName.CanManageMovies)]
+    public ActionResult New()
+    {
+      var viewModel = new MovieFormViewModel
+      {
+        Genres = _dbContext.Genres.AsEnumerable()
+      };
+
+      return View("MovieForm", viewModel);
     }
 
     [Route("movies/details/{id}")]
@@ -55,15 +68,6 @@ namespace Vidly.Controllers
       return Content(year + "/" + month);
     }
 
-    public ActionResult New()
-    {
-      var viewModel = new MovieFormViewModel
-      {
-        Genres = _dbContext.Genres.AsEnumerable()
-      };
-
-      return View("MovieForm", viewModel);
-    }
 
     public ActionResult Edit(int id)
     {

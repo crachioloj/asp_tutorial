@@ -1,17 +1,13 @@
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using Vidly.Models;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using System.Security.Claims;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
-namespace Vidly
+namespace Vidly.Models
 {
+  // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
   public class ApplicationUser : IdentityUser
   {
     [Required]
@@ -27,22 +23,16 @@ namespace Vidly
     }
   }
 
-  public partial class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+  public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
   {
-    public ApplicationDbContext()
-        : base("name=ApplicationDataModel")
-    {
-    }
-
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Movie> Movies { get; set; }
     public DbSet<MembershipType> MembershipTypes { get; set; }
     public DbSet<Genre> Genres { get; set; }
 
-    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    public ApplicationDbContext()
+        : base("DefaultConnection", throwIfV1Schema: false)
     {
-      modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-      base.OnModelCreating(modelBuilder);
     }
 
     public static ApplicationDbContext Create()
