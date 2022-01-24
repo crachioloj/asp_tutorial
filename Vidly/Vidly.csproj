@@ -185,11 +185,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
     <Compile Include="Controllers\Api\MoviesController.cs" />
+    <Compile Include="Controllers\Api\RentalsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Dtos\GenreDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
     <Compile Include="Dtos\MovieDto.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
+    <Compile Include="Dtos\RentalDto.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Migrations\202107260300300_InitialModel.cs" />
     <Compile Include="Migrations\202107260300300_InitialModel.Designer.cs">
@@ -279,6 +281,10 @@
     <Compile Include="Migrations\202112282347206_AddPhoneNumber.Designer.cs">
       <DependentUpon>202112282347206_AddPhoneNumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201232353260_AddRentals.cs" />
+    <Compile Include="Migrations\202201232353260_AddRentals.Designer.cs">
+      <DependentUpon>202201232353260_AddRentals.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ForgotPasswordViewModel.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -304,6 +310,7 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieStock0To20.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\ResetPasswordViewModel.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\SendCodeViewModel.cs" />
@@ -640,6 +647,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112282347206_AddPhoneNumber.resx">
       <DependentUpon>202112282347206_AddPhoneNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201232353260_AddRentals.resx">
+      <DependentUpon>202201232353260_AddRentals.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
