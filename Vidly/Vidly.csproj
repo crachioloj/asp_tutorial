@@ -285,6 +285,10 @@
     <Compile Include="Migrations\202201232353260_AddRentals.Designer.cs">
       <DependentUpon>202201232353260_AddRentals.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201302248504_AddNumberAvailableToMovie.cs" />
+    <Compile Include="Migrations\202201302248504_AddNumberAvailableToMovie.Designer.cs">
+      <DependentUpon>202201302248504_AddNumberAvailableToMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ForgotPasswordViewModel.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -650,6 +654,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201232353260_AddRentals.resx">
       <DependentUpon>202201232353260_AddRentals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201302248504_AddNumberAvailableToMovie.resx">
+      <DependentUpon>202201302248504_AddNumberAvailableToMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
